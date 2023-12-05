@@ -124,57 +124,81 @@ Bacteria with different 16S sequences but similar other traits might be differen
 
 1. Using the same file, calculate the number of each genera found
 	- What is the most abundant genus?
+cut -f2 otus.utax | cut -d ',' -f6 | cut -d '(' -f1 | sort| uniq -c| sort| less -S
 14 g:Anaerococcus, 14 g:Prevotella, and 13 g:Corynebacterium
 
-1. Pull out all the OTUs from the most abundant genus from the otus.fa file.  Now get all the species from that genus from the 16S_db.fa file.
-Anaerococcus had 18 reads and Prevotella had 102. 
+1. Pull out all the OTUs from the most abundant genus from the otus.fa file.  
+grep 'Anaerococcus' otus.utax  > Anaerococcus_otus.utax
+
+1. Now get all the species from that genus from the 16S_db.fa file.
+usearch11 -fastx_getseqs 16S_db.fa -labels my_species.txt  -label_substr_match -fastaout Anaerococcus.fa
+18 species found in 16S database by 'grep 's:' Anaerococcus.fa' 
+>gi|636559445|ref|NR_115504.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_hydrogenalis;strain=GIFU_7662;complete=no;16sDatabaseName=same;
+>gi|636559447|ref|NR_115506.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_tetradius;strain=GIFU_7672;complete=no;16sDatabaseName=same;
+>gi|636559454|ref|NR_115513.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_lactolyticus;strain=GIFU_8586;complete=no;16sDatabaseName=same;
+>gi|636559444|ref|NR_115503.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_prevotii;strain=GIFU_7658;complete=no;16sDatabaseName=same;
+>gi|636559449|ref|NR_115508.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_vaginalis;strain=GIFU_12669;complete=no;16sDatabaseName=same;
+>gi|219846768|ref|NR_026360.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_octavius;strain=NCTC_9810;complete=no;16sDatabaseName=same;
+>gi|343201181|ref|NR_041937.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_vaginalis;strain=CCUG_31349;complete=no;16sDatabaseName=same;
+>gi|343201183|ref|NR_041939.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_prevotii;strain=CCUG_41932;complete=no;16sDatabaseName=same;
+>gi|343201184|ref|NR_041940.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_lactolyticus;strain=CCUG_31351;complete=no;16sDatabaseName=same;
+>gi|343201185|ref|NR_041941.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_tetradius;strain=CCUG_46590;complete=no;16sDatabaseName=same;
+>gi|636559827|ref|NR_115887.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_murdochii;strain=WAL_17230;complete=no;16sDatabaseName=same;
+>gi|631251831|ref|NR_113029.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_hydrogenalis;strain=JCM_7635;complete=no;16sDatabaseName=same;
+>gi|672238984|ref|NR_125573.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_pacaensis;strain=9403502_16S;complete=no;16sDatabaseName=same;
+>gi|645321194|ref|NR_118220.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_senegalensis;strain=JC48_16S;complete=no;16sDatabaseName=same;
+>gi|631252367|ref|NR_113565.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_lactolyticus;strain=JCM_8140;complete=no;16sDatabaseName=same;
+>gi|645321332|ref|NR_118323.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_obesiensis;strain=ph10_16S;complete=no;16sDatabaseName=same;
+>gi|631253116|ref|NR_114314.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_vaginalis;strain=JCM_8138;complete=no;16sDatabaseName=same;
+>gi|444304151|ref|NR_074575.1;tax=d:Bacteria,p:Firmicutes,c:Tissierellia,o:Tissierellales,f:Peptoniphilaceae,g:Anaerococcus,s:Anaerococcus_prevotii;strain=DSM_20548;complete=yes;16sDatabaseName=same;
+
+Note multiple reference sequences for vaginalis, prevotii, lactolyticus, hydrogenalis, and tetradius
 
 	- Fix the headers so they do not have semicolons, but do have the species name for both OTU file and database file.
-Used repeated 'perl -pi.bak -e 's/;//' Anaerococcus.fa.bak' commands until the semicolons looked gone in 'head', and then 
-confirmed lack of semicolons with 'grep'. (Need to use bak file because I accidentally deleted the species names while figuring out perl s)
+Did 'perl -pi.bak -e 's/;/_/' Anaerococcus_otus.utax' twice until I didn't see semicolons by 'head', then confirmed lack of semicolons with grep 
+Did 'perl -pi.bak -e 's/;/_/' Anaerococcus.fa' (16S database) about five times until I didn't see semicolons by 'head', then confirmed lack of semicolons with grep 
+
+Made Anaerococcus_otus_list.txt:
+OTU_10_size=7032_
+OTU_11_size=2688_
+OTU_16_size=432_
+OTU_33_size=53_
+OTU_70_size=984_
+OTU_97_size=9_
+OTU_106_size=3_
+OTU_123_size=8_
+OTU_137_size=13_
+OTU_176_size=19_
+OTU_177_size=11_
+OTU_178_size=1_
+OTU_239_size=3_
+OTU_305_size=10_
+
+Then 'usearch11 -fastx_getseqs otus.fa -labels Anaerococcus_otus_list.txt -label_substr_match -fastaout AnaerococcusOtusSeqs.fa'
 
 	- Align all sequences
-'mafft Anaerococcus.fa.bak > Anaerococcus.aln'
+OTU sequences: 
+'mafft AnaerococcusOtusSeqs.fa > Anaerococcus.aln'
+
+16S database sequences: (where Anaerococcus.fa was a subset of the 16S database similar to the staph.fa described above)
+'mafft Anaerococcus.fa > AnaerococcusDB.aln'
+
+Combining them: cat did not produce a file recognized as aligned by fasttree but did produce a file with sequences in it recognized by seqkit stats. 
+'cat Anaerococcus.aln AnaerococcusDB.aln > allAnaerococcus.aln' 
+followed by 
+'mafft allAnaerococcus.aln > allAnaerococcusAligned.aln' 
 
 	- Make a phylogenetic tree
-'fasttree -nt Anaerococcus.aln >Anaerococcus.tree'
-    
 	- Examine the tree - Where would you expect the OTU sequences to be place in the tree, relative to the database sequences?
-18 sequences (14 OTUs): 
-NR_115504.1tax=d:Anaerococcus_hydrogenalisstrain=GIFU_7662
-NR_115506.1tax=d:Anaerococcus_tetradiusstrain=GIFU_7672
-NR_115513.1tax=d:Anaerococcus_lactolyticusstrain=GIFU_8586
-NR_115503.1tax=d:Anaerococcus_prevotiistrain=GIFU_7658
-NR_115508.1tax=d:Anaerococcus_vaginalisstrain=GIFU_12669
-NR_026360.1tax=d:Anaerococcus_octaviusstrain=NCTC_9810
-NR_041937.1tax=d:Anaerococcus_vaginalisstrain=CCUG_31349
-NR_041939.1tax=d:Anaerococcus_prevotiistrain=CCUG_41932
-NR_041940.1tax=d:Anaerococcus_lactolyticusstrain=CCUG_31351
-NR_041941.1tax=d:Anaerococcus_tetradiusstrain=CCUG_46590
-NR_115887.1tax=d:Anaerococcus_murdochiistrain=WAL_17230
-NR_113029.1tax=d:Anaerococcus_hydrogenalisstrain=JCM_7635
-NR_125573.1tax=d:Anaerococcus_pacaensisstrain=9403502
-NR_118220.1tax=d:Anaerococcus_senegalensisstrain=JC48
-NR_113565.1tax=d:Anaerococcus_lactolyticusstrain=JCM_8140
-NR_118323.1tax=d:Anaerococcus_obesiensisstrain=ph10
-NR_114314.1tax=d:Anaerococcus_vaginalisstrain=JCM_8138
-NR_074575.1tax=d:Anaerococcus_prevotiistrain=DSM_20548
-
-Anterococcus_vaginalis: 3 reads - NR_115508, NR_041937, NR_114314; these are close together in the tree
-Anterococcus_prevotii: 3 reads - NR_115503, NR_041939, NR_074575; these are close together in the tree
-Anterococcus_lactolyticus: 3 reads - NR_115513, NR_041940, NR_113565; these are close together in the tree
-Anterococcus_hydrogenaliss: 2 reads - NR_115504, NR_113029; these are close together in the tree 
-Anterococcus_tetradius: 2 reads - NR_115506, NR_041941; these are close together in the tree
+OTU sequences and database sequences overlap and are similar to each other
 
 	- Does the tree appear as you expected?  If there are differences, what may be happening?
-
-1. Challenge: using the files that you have generated so far can you alter the fasta headers for the OTUs so that they include both
-	a. the OTU designation, i.e. otu_1
-	b. the species assignment of utax?
-	- e.g. otu_1_Staphylococcus_aureus
-	- hint: look at the `paste` command
+Tree appears as I expected
 
 1. Plot the Unifrac distance matrix using either PCA or a heatmap
-	- hint: excel has 'conditional formatting' that might make this easy.
-	- compare this to the euclidean distance you calculated last class.
+	- hint: excel has 'conditional formatting' that might make this easy. 
+Added to git repository in OMICS/content/wk15 as unifrac_sorted.png
+	- compare this to the euclidean distance you calculated last class. 
+order after sorting is different; degree of clustered similarities and differences is comparable
 	- Do the matrices agree with each other?  Compare/contrast the methods and explain what you observe
+
