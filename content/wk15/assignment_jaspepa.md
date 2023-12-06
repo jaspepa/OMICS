@@ -202,3 +202,22 @@ Added to git repository in OMICS/content/wk15 as unifrac_sorted.png
 order after sorting is different; degree of clustered similarities and differences is comparable
 	- Do the matrices agree with each other?  Compare/contrast the methods and explain what you observe
 
+Combining them: cat did not produce a file recognized as aligned by fasttree but did produce a file with sequences in it recognized by s>
+'cat Anaerococcus.aln AnaerococcusDB.aln > allAnaerococcus.aln'
+followed by
+'mafft allAnaerococcus.aln > allAnaerococcusAligned.aln'
+
+        - Make a phylogenetic tree
+        - Examine the tree - Where would you expect the OTU sequences to be place in the tree, relative to the database sequences?
+OTU sequences and database sequences overlap and are similar to each other
+
+        - Does the tree appear as you expected?  If there are differences, what may be happening?
+Tree appears as I expected; some OTUS are more similar to each other than to any reference sequence because they might not be well-characterized
+
+1. Plot the Unifrac distance matrix using either PCA or a heatmap
+        - hint: excel has 'conditional formatting' that might make this easy.
+Added to git repository in OMICS/content/wk15 as unifrac_sorted.png
+        - compare this to the euclidean distance you calculated last class.
+order after sorting is different; degree of clustered similarities and differences is comparable
+        - Do the matrices agree with each other?  Compare/contrast the methods and explain what you observe
+some similarities and some differences; both have the property that things are zero difference from themselves; I tried plotting euclidean distance (from each other sample) for a few randomly selected samples and euclidean distance seemed to have weak positive correlations to unifrac distance
